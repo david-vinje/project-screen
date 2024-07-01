@@ -10,7 +10,11 @@ jobs:
   docker:
     runs-on: self-hosted
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - run: podman build -t screen .
-      - run: podman run -p 3000:3000 screen
+      
+      - name: Build
+        run: podman build -t screen -f screen/Dockerfile .
+      
+      - name: Run
+        run: podman run -p 3000:3000 screen
