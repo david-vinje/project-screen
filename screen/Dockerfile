@@ -2,16 +2,16 @@
 FROM node:lts-alpine
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /screen
 
 # Copy package.json and package-lock.json to the container
-COPY package*.json ./
+COPY screen/package*.json ./
 
 # Install dependencies
 RUN npm install
 
 # Copy the entire project to the container
-COPY . .
+COPY screen .
 
 # Build the React app
 RUN npm install -g serve \
