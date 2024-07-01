@@ -2,19 +2,19 @@
 FROM node:lts-alpine
 
 # Set the working directory in the container
-WORKDIR /screen
+WORKDIR /app
 
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
-
-# Copy the entire project to the container
-COPY . .
 
 # Build the React app
 RUN npm install \
     && npm install -g serve \
     && npm run build \
     && rm -fr node_modules
+
+# Copy the entire project to the container
+COPY . .
 
 # Expose the port on which the app will run
 EXPOSE 3000
